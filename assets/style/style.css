@@ -6,8 +6,31 @@ body {
 
 .jumbotron {
     text-align: center;
-    background-color: darkslateblue;
-    color: white;
+    /* might I just add that I am *VERY* happy with this gradient, she's fantastic! */
+    background-image:linear-gradient(white, darkslateblue);
+    color: midnightblue;
     border-radius: 0;
     border: 10px solid white;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* footer {
+    text-align: center;
+    padding: 30px;
+    margin: 30px;
+    position: relative;
+  } */
