@@ -1,6 +1,5 @@
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 16px;
     line-height: 1;
   }
 
@@ -11,6 +10,7 @@ body {
     color: midnightblue;
     border-radius: 0;
     border: 10px solid white;
+    font-size: 15px;
   }
 
 
