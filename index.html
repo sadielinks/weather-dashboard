@@ -15,17 +15,33 @@
 
 <body>
     <!-- Header w/ a cool gradient -->
-    <header class="jumbotron">
-        <h1 class="display-3">Your Weather Dashboard 🌦️</h1>
-        <p id="currentDay" class="lead"></p>
+    <header class='jumbotron'>
+        <h1 class='display-3'>Your Weather Dashboard 🌦️</h1>
+        <p id='currentDay' class='lead'></p>
     </header>
-    <!-- Placing site display silhouettes  -->
+    <!-- Placing site display silhouettes with bootstrap -->
     <main class='container-fluid'>
+        <!-- Side panel w/ search form, button, + previously searched cities to be displayed -->
         <aside class='col-md-4 aside'>
-            <h2 id='h2'>📍 Search for a City:</h2>
-            <form class=''>
-
+            <!-- spec. using h5 because the sizings with bootstrap -->
+            <h5 id='h2'>📍 Search for a City:</h5>
+            <form class='form-inline'>
+                <div class='form-group'>
+                    <input id='searchforcityhere' class='form-input' type='text' placeholder='find the weather in...'>
+                    <button class='btn btn-info btn-block' id='searchBtn' type='submit'>
+                    <!-- insert cute lil font awesome icons! -->
+                    <i class="fas fa-search"></i>
+                </button>
             </form>
+            <div>
+                <ul class="list-group" id="city-list"></ul>
+            </div>
+
+
+
+
+
+            
         </aside>
 
 
