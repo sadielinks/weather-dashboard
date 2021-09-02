@@ -9,6 +9,8 @@ body {
     color: midnightblue;
     border-radius: 0;
     border: 10px solid white;
+    display: flex;
+    flex-wrap: wrap;
   }
 
 #displayweathernow {
@@ -16,10 +18,9 @@ body {
   flex-wrap: wrap;
 }
 
-#fivedayforecast {
+/* #fivedayforecast {
   margin: 20px, 10px;
-}
-
+} */
 
 
 
