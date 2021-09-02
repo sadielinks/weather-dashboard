@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Adding in bootsrap cdn, font awesome, & stylesheet -->
-    <link
-        href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet' />
     <link href='./assets/style/style.css' rel='stylesheet' />
     <title> Your Weather Dashboard 🌦️</title>
@@ -19,10 +19,13 @@
         <h1 class="display-3">Your Weather Dashboard 🌦️</h1>
         <p id="currentDay" class="lead"></p>
     </header>
-    <!-- Placing site silhouettes + will build rest dynamically in js  -->
-    <main class='row'>
-        <aside id='searchBar'>
+    <!-- Placing site display silhouettes  -->
+    <main class='container-fluid'>
+        <aside class='col-md-4 aside'>
+            <h2 id='h2'>📍 Search for a City:</h2>
+            <form class=''>
 
+            </form>
         </aside>
 
 
