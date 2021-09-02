@@ -11,8 +11,14 @@ body {
     border: 10px solid white;
   }
 
+#displayweathernow {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-
+#fivedayforecast {
+  margin: 20px, 10px;
+}
 
 
 
