@@ -22,7 +22,8 @@
     <main class='container-fluid'>
 
         <!-- Side panel w/ search form, button, + previously searched cities to be displayed -->
-        <aside class='sidepanel'>
+        <div class=row>
+            <div class="col-md-3 bg-light">
             <!-- spec. using h5 because the sizings with bootstrap -->
             <h5 id='h2'>📍 Search for a City:</h5>
             <form class='form-inline'>
@@ -30,14 +31,15 @@
                     <input id='searchforcityhere' class='form-input' type='text' placeholder='find the weather in...'>
                     <button class='btn btn-light' id='searchBtn' type='submit'><i class="fas fa-search"></i></button>
                     <!-- clear button -->
-                    <button id="clear" class="btn clearBtn" data-toggle="tooltip" title="Clear Search History"><i
-                            class="fas fa-times-circle"></i></button>
+                    <button id="clear" class="btn clearBtn" data-toggle="tooltip" title="clearpastsearches"><i class='fas fa-times-circle'></i></button>
             </form>
             <!-- need to figure out how to display past searches here -->
             <div> 
                 <ul class='searchedarea' id='searchedcities'></ul>
             </div>
-        </aside>
+        </div>
+        </div>
+        
 
         <!-- search result display -->
         <div class="col-md-9">
