@@ -21,12 +21,14 @@
 
 
 // Function 1 - search panel + buttons
-
+function citySearchBtns (previouscitySearchBtns) {
+    var searchDataReturn
+}
 
 
 
 // Function 2 - format the doc to layout
-
+// function formatWeather
 
 
 
