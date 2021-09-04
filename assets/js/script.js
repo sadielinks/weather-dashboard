@@ -22,10 +22,23 @@
 
 // Function 1 - format the doc to layout 
 $(document).ready(function () {
+
+    // let's make the search button do it's thang
+    $('#searchBtn').on('click', function (event) {
+        event.preventDefault();
+        //
+        var searchForCityHere = $('#searchforcityhere').val().trim();
+        if (searchForCityHere != '') {
+            searchListBtns(searchForCityHere) = true;
+            localStorage.setItem('searchListBtns', JSON.stringify(searchListBtns));
+        }
+    })
+
+    // prevent displaying old search results 
     var searchListBtns = JSON.parse(localStorage.getItem('searchListBtns'));
-    // if statment so user cannot submit an 'empty' search
-    if (searchListBtns == null) {
-        alert('Please Enter Location Name')
+    // if statment so user cannot submit an 'empty' search, thx stackoverflow
+    if (searchListBtns === null) {
+        searchListBtns = {};
     }
 })
 
