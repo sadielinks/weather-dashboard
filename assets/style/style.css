@@ -7,20 +7,40 @@ body {
     /* might I just add that I am *VERY* happy with this gradient, she's fantastic! */
     background-image:linear-gradient(white, darkslateblue);
     color: midnightblue;
-    border-radius: 0;
-    border: 10px solid white;
+    text-align: center;
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
   }
 
+#h2 {
+  font-weight: bold;
+  background-color: whitesmoke;
+}
+
 #displayweathernow {
   display: flex;
-  flex-wrap: wrap;
+}
+
+#city-name{
+  display: flex;
+}
+
+#current-icon{
+  display: flex;
+}
+
+#fivedayforecast{
+  display: flex;
+}
+
+#fivedaycards{
+  display: flex;
 }
 
 /* #fivedayforecast {
   margin: 20px, 10px;
-} */
+}  */
 
 
 
