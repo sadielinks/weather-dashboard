@@ -21,12 +21,20 @@
 
 
 // Function 1 - format the doc to layout 
+$(document).ready(function () {
+    var searchListBtns = JSON.parse(localStorage.getItem('searchListBtns'));
+    // if statment so user cannot submit an 'empty' search
+    if (searchListBtns == null) {
+        alert('Please Enter Location Name')
+    }
+})
+
 // function formatWeather
 
 
 // Function 2 - search panel + buttons
-function citySearchBtns (previouscitySearchBtns) {
-    var searchDataReturn = Object.keys(previouscitySearchBtns);
+function citySearchBtns (searchListBtns) {
+    var searchDataReturn = Object.keys(searchListBtns);
     console.log(searchDataReturn)
 }
 
