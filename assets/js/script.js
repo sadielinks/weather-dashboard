@@ -67,7 +67,8 @@ function citySearchBtns(searchListBtns) {
     console.log(searchDataReturn)
     for (var i = 0; i < cityProperty.length; i++) {
         var theButtonGroup = $(':button');
-        theButtonGroup.addClass('')
+        // dynamically adding btns with JQuery <3
+        theButtonGroup.addClass('list-group-item list-group-item-action')
     }
 }
 
