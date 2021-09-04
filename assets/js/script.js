@@ -28,29 +28,45 @@ $(document).ready(function () {
         event.preventDefault();
         //
         var searchForCityHere = $('#searchforcityhere').val().trim();
+
+        // save search to local storage with setItem
         if (searchForCityHere != '') {
             searchListBtns(searchForCityHere) = true;
             localStorage.setItem('searchListBtns', JSON.stringify(searchListBtns));
+
+            showThemResults(searchListBtns, searchListBtns);
+
+            // display the current city selection
+            $('#displayweathernow').show();
+            // display the 5 day forecast cards
+            $('#fivedayforecast').show();
         }
     })
 
-    // prevent displaying old search results 
+    // hide the current city selection when not showin them results
+    $('#displayweathernow').hide();
+    // hide the 5 day forecast cards as well
+    $('#fivedayforecast').hide();
+
+    // prevent old search results in main display
     var searchListBtns = JSON.parse(localStorage.getItem('searchListBtns'));
     // if statment so user cannot submit an 'empty' search, thx stackoverflow
     if (searchListBtns === null) {
         searchListBtns = {};
     }
-})
 
+
+
+})
 // function formatWeather
 
 
 // Function 2 - search panel + buttons
-function citySearchBtns (searchListBtns) {
+function citySearchBtns(searchListBtns) {
     var searchDataReturn = Object.keys(searchListBtns);
     console.log(searchDataReturn)
 }
 
 
 // Function 3 - generate the search result
-// function generateSearchResults
+// function showThemResults
