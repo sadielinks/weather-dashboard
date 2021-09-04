@@ -1,18 +1,15 @@
 // Set up API key per https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys 
-// var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
+var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
 
 // // fetching via bithacker <3
-// function weatherBalloon( cityID ) {
-//     var key = 'f18e1d06a58117a9f630af5002d9adef';
-//     fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityID+ '&appid=' + key)  
-//     .then(function(resp) { return resp.json() }) // Convert data to json
-//     .then(function(data) {
-//       console.log(data);
-//     })
-//     .catch(function() {
-//       // catch any errors
-//     });
-//   }
+    fetch('https://api.openweathermap.org/data/2.5/weather?id=&appid=' + APIKey)  
+    .then(function(resp) { return resp.json() }) // Convert data to json
+    .then(function(data) {
+      console.log(data);
+    })
+    .catch(function() {
+      // catch any errors
+    });
 //   window.onload = function() {
 //     weatherBalloon( 4887398 );
 //   }
@@ -55,16 +52,23 @@ $(document).ready(function () {
         searchListBtns = {};
     }
 
-
+    // lol I'll need to make a function to have the previously searched cities appear in the side panel but let's come back for that later heheh...
 
 })
 // function formatWeather
+// // // // // // //
+
+
 
 
 // Function 2 - search panel + buttons
 function citySearchBtns(searchListBtns) {
     var searchDataReturn = Object.keys(searchListBtns);
     console.log(searchDataReturn)
+    for (var i = 0; i < cityProperty.length; i++) {
+        var theButtonGroup = $(':button');
+        theButtonGroup.addClass('')
+    }
 }
 
 
