@@ -20,16 +20,15 @@
 //Hmm... let's leave room to try ajax as well...
 
 
-// Function 1 - search panel + buttons
-function citySearchBtns (previouscitySearchBtns) {
-    var searchDataReturn
-}
-
-
-
-// Function 2 - format the doc to layout
+// Function 1 - format the doc to layout 
 // function formatWeather
 
+
+// Function 2 - search panel + buttons
+function citySearchBtns (previouscitySearchBtns) {
+    var searchDataReturn = Object.keys(previouscitySearchBtns);
+    console.log(searchDataReturn)
+}
 
 
 // Function 3 - generate the search result
