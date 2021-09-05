@@ -1,6 +1,8 @@
 // Set up API key per https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys 
-var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
-var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?id=&appid=' + APIKey
+// var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
+// var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchForCityHere + "&appid=" + APIKey;
+// var weatherUrl = 'api.openweathermap.org/data/2.5/weather?q={city name}&appid={' + APIKey
+
 
 // // fetching via bithacker <3
 //     fetch('https://api.openweathermap.org/data/2.5/weather?id=&appid=' + APIKey)  
@@ -15,18 +17,23 @@ var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?id=&appid=' + 
 // //     weatherBalloon( 4887398 );
 // //   }
 
-Hmm... let's leave room to try ajax as well...
+// Hmm... let's leave room to try ajax as well...
 
-generate the search result - office hours
+// generate the search result - office hours
 function generateSearchResults () {
+    var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchForCityHere + "&appid=" + APIKey;
+
     var searchInput = $searchInput.val();
     searchInput = 'chicago'
 
     $.ajax({
         url: weatherUrl,
+        method: 'GET',
         success: function (data) {
             let appendedDates = [];
             let appendedCount = 0
+            console.log(data)
 
             for (let i=0; i < data.list.length; i++){
                 let curr = data.list[i]
@@ -47,8 +54,12 @@ function generateSearchResults () {
                 }
             }
         }
-    })̀
+    })
+    generateSearchResults();
+    console.log(generateSearchResults)
 }
+
+
 
 // format the doc to layout 
 $(document).ready(function () {
@@ -88,6 +99,7 @@ $(document).ready(function () {
     // lol I'll need to make a function to have the previously searched cities appear in the side panel but let's come back for that later heheh...
 
 })
+
 // function formatWeather
 // // // // // // //
 
