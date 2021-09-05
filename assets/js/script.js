@@ -79,11 +79,10 @@ function citySearchBtns(searchListBtns) {
             // charAt will help have the first letter turn capital only, since the index begins at 0 (first letter)
             splitStr[j] = splitStr[j].charAt(0).toUpperCase()
         }
-
+        // prepend to the DOM
+        var priorSearches = splitStr.join('');
+        citySearchBtns.text(makeCityNameCaps);
+        $('#searchedcities').prepend(theButtonGroup);
 
     }
 }
-
-
-// generate the search result
-// function showThemResults
