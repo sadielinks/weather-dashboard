@@ -15,9 +15,9 @@ var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?id=&appid=' + 
 // //     weatherBalloon( 4887398 );
 // //   }
 
-//Hmm... let's leave room to try ajax as well...
+Hmm... let's leave room to try ajax as well...
 
-// generate the search result - office hours
+generate the search result - office hours
 function generateSearchResults () {
     var searchInput = $searchInput.val();
     searchInput = 'chicago'
@@ -47,8 +47,7 @@ function generateSearchResults () {
                 }
             }
         }
-    })
-    
+    })̀
 }
 
 // format the doc to layout 
