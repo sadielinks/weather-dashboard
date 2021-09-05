@@ -17,7 +17,7 @@ var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
 //Hmm... let's leave room to try ajax as well...
 
 
-// Function 1 - format the doc to layout 
+// format the doc to layout 
 $(document).ready(function () {
 
     // let's make the search button do it's thang
@@ -61,17 +61,29 @@ $(document).ready(function () {
 
 
 
-// Function 2 - search panel + buttons
+// search panel + buttons
 function citySearchBtns(searchListBtns) {
     var searchDataReturn = Object.keys(searchListBtns);
     console.log(searchDataReturn)
+
+    // let's make previous searches buttons in the side panel with loops + dynamically adding btns
     for (var i = 0; i < cityProperty.length; i++) {
         var theButtonGroup = $(':button');
-        // dynamically adding btns with JQuery <3
         theButtonGroup.addClass('list-group-item list-group-item-action')
+
+        // this is about to be the coolest thing I've learned yet
+        // need to make a secondary loop so that the past searched city text appear on buttons, so I will use 'J' instead of another i, just like in math class heheh
+        var makeCityNameCaps = searchDataReturn[i].toLowerCase().split('');
+        // bringin in that j
+        for (var j = 0; j < split.Str.length; j++) {
+            // charAt will help have the first letter turn capital only, since the index begins at 0 (first letter)
+            splitStr[j] = splitStr[j].charAt(0).toUpperCase()
+        }
+
+
     }
 }
 
 
-// Function 3 - generate the search result
+// generate the search result
 // function showThemResults
