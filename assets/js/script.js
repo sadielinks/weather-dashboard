@@ -46,11 +46,22 @@ function generateSearchResults () {
 
         var cityName = $('<h2>').text(response.name);
         $('#cityname').prepend(cityName);
+
+        // icon placement
+        var weatherIcon = $('<img>');
         weatherIcon.attr('src', "https://openweathermap.org/img/w/" + response.weather[0].icon + '.png');
 
         $('#iconsnow').empty();
         $('#iconsnow').append(weatherIcon);
 
+        // display temp
+        // the data will come as K, so will need to convert it to °F
+        var convertKtoF = $("<p>").text("Temperature: " + KtoCelcius + "°F");
+        var currentTemp = 
+
+        //  display humidity + wind
+        var currentHumidity = $("<p>").text("Humidity: " + response.main.humidity + "%");
+        var currentWind = $("<p>").text("Wind Speed: " + response.wind.speed + "m/s");
 
 
 
