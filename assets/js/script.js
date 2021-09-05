@@ -45,10 +45,12 @@ function generateSearchResults () {
         $('#city-name').append(displayMomentHere.text(' (' + currentMoment.format('l') + ') ') );
 
         var cityName = $('<h2>').text(response.name);
-        $('#city-name').prepend(cityName);
+        $('#cityname').prepend(cityName);
         weatherIcon.attr('src', "https://openweathermap.org/img/w/" + response.weather[0].icon + '.png');
 
-        $('#')
+        $('#iconsnow').empty();
+        $('#iconsnow').append(weatherIcon);
+
 
 
 
