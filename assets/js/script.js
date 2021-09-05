@@ -41,11 +41,11 @@ function generateSearchResults () {
         var currentMoment = moment();
 
         // refresh + replace the displayed city name
-        $('#city-name').empty();
-        $('#city-name').append(displayMomentHere.text(' (' + currentMoment.format('l') + ') ') );
+        $('citynamenow').empty();
+        $('citynamenow').append(displayMomentHere.text(' (' + currentMoment.format('l') + ') ') );
 
         var cityName = $('<h2>').text(response.name);
-        $('#cityname').prepend(cityName);
+        $('#citynamenow').prepend(cityName);
 
         // icon placement
         var weatherIcon = $('<img>');
@@ -56,15 +56,51 @@ function generateSearchResults () {
 
         // display temp
         // the data will come as K, so will need to convert it to °F
-        var convertKtoF = $("<p>").text("Temperature: " + KtoCelcius + "°F");
-        var currentTemp = 
+        // var convertKtoF =
+        var tempNow = $('<p>').text('Temperature: ' + convertKtoF + '°F');
 
-        //  display humidity + wind
-        var currentHumidity = $("<p>").text("Humidity: " + response.main.humidity + "%");
-        var currentWind = $("<p>").text("Wind Speed: " + response.wind.speed + "m/s");
+        //  display winds + humidity
+        var windsNow = $('<p>').text('Wind Speed: ' + response.wind.speed + 'MPH');
+        var humidityNow = $('<p>').text('Humidity: ' + response.main.humidity + '%');
 
 
+        // apend to the right places in DOM
+        $('#tempnow').append(tempNow);
+        $('#windsnow').append(windwsNow);
+        $('#humiditynow').append(humidityNow);
 
+        // build UV index
+        var latitude = response.coord.latitude;
+        var longitude = repsonse.coord.longitude
+
+        // pull UV index
+        var uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIkey+ "&lat=" + latitude + "&lon=" + longitude;
+        
+        // display UV index using ajax
+        $.ajax({
+            url: uvQueryURL,
+            method: 'GET'
+        }).then(function (uvIndex) {
+            console.log(uvIndex);
+            var uvNow = $('<span>');
+     
+            // if/else statement + bootstrap to display UV conditions
+            if (uvIndex.value < 2) {
+                // green is favorable, levels 1-2
+                uvNow.addClass('p-3 mb-2 bg-success text-white');
+            } else if (uvIndex.value > 7) {
+                // yellow being moderate, levels 3-7
+                uvNow.addClass('p-3 mb-2 bg-warning text-dark');
+            } else {
+                // red is... severse lol help them, levels 8+
+                uvNow.addClass('p-3 mb-2 bg-danger text-white');
+            }
+            uvNow.text(uvIndex.value);
+            $('#uvnow').text('UV Index: ');
+            $('#uvnow').append(uvNow);
+
+        // now to build the 5 day card content!
+        
 
     }
     
