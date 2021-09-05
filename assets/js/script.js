@@ -6,7 +6,7 @@
 
 
 // // fetching via bithacker <3
-//     fetch('https://api.openweathermap.org/data/2.5/weather?id=&appid=' + APIKey)  
+    // fetch('https://api.openweathermap.org/data/2.5/weather?id=&appid=' + APIKey)  
 //     .then(function(resp) { return resp.json() }) // Convert data to json
 //     .then(function(data) {
 //       console.log(data);
@@ -45,7 +45,13 @@ function generateSearchResults () {
         $('#city-name').append(displayMomentHere.text(' (' + currentMoment.format('l') + ') ') );
 
         var cityName = $('<h2>').text(response.name);
-        $('#city-name')
+        $('#city-name').prepend(cityName);
+        weatherIcon.attr('src', "https://openweathermap.org/img/w/" + response.weather[0].icon + '.png');
+
+        $('#')
+
+
+
 
     }
     
