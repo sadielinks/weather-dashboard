@@ -1,21 +1,55 @@
 // Set up API key per https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys 
 var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
+var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?id=&appid=' + APIKey
 
 // // fetching via bithacker <3
-    fetch('https://api.openweathermap.org/data/2.5/weather?id=&appid=' + APIKey)  
-    .then(function(resp) { return resp.json() }) // Convert data to json
-    .then(function(data) {
-      console.log(data);
-    })
-    .catch(function() {
-      // catch any errors
-    });
-//   window.onload = function() {
-//     weatherBalloon( 4887398 );
-//   }
+//     fetch('https://api.openweathermap.org/data/2.5/weather?id=&appid=' + APIKey)  
+//     .then(function(resp) { return resp.json() }) // Convert data to json
+//     .then(function(data) {
+//       console.log(data);
+//     })
+//     .catch(function() {
+//       // catch any errors
+//     });
+// //   window.onload = function() {
+// //     weatherBalloon( 4887398 );
+// //   }
 
 //Hmm... let's leave room to try ajax as well...
 
+// generate the search result - office hours
+function generateSearchResults () {
+    var searchInput = $searchInput.val();
+    searchInput = 'chicago'
+
+    $.ajax({
+        url: weatherUrl,
+        success: function (data) {
+            let appendedDates = [];
+            let appendedCount = 0
+
+            for (let i=0; i < data.list.length; i++){
+                let curr = data.list[i]
+                let currentDateText = cur.dt_txt
+                let currDate = currDateText.split(' ')[0];
+
+                if (!appendedDates.includes(currDate)) {
+                    appendedDates.push(currDate)
+                    let temp = curr.main.temp;
+
+                    $('searchedcities').append(
+                        getPanelHTML(currDateText, temp)
+                    )
+                    appendedCount++;
+                    if (appendedCount > 4) {
+                        break;
+                    }
+                }
+            }
+        }
+    })
+    
+}
 
 // format the doc to layout 
 $(document).ready(function () {
@@ -57,8 +91,6 @@ $(document).ready(function () {
 })
 // function formatWeather
 // // // // // // //
-
-
 
 
 // search panel + buttons
