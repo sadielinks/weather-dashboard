@@ -2,6 +2,7 @@
 // var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
 // var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchForCityHere + "&appid=" + APIKey;
 // var weatherUrl = 'api.openweathermap.org/data/2.5/weather?q={city name}&appid={' + APIKey
+// 
 
 
 // // fetching via bithacker <3
@@ -19,45 +20,47 @@
 
 // Hmm... let's leave room to try ajax as well...
 
+
+
+
 // generate the search result - office hours
 function generateSearchResults () {
     var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchForCityHere + "&appid=" + APIKey;
 
-    var searchInput = $searchInput.val();
-    searchInput = 'chicago'
+    // will build the buttons previously searched
+    citySearchBtns(searchListBtns);
 
     $.ajax({
-        url: weatherUrl,
-        method: 'GET',
-        success: function (data) {
-            let appendedDates = [];
-            let appendedCount = 0
-            console.log(data)
+        url: queryURL,
+        method: 'GET'
+    }).then(function (repsonse) {
+        console.log(repsonse);
 
-            for (let i=0; i < data.list.length; i++){
-                let curr = data.list[i]
-                let currentDateText = cur.dt_txt
-                let currDate = currDateText.split(' ')[0];
+        var displayMomentHere = $('<h2>');
+        var currentMoment = moment();
 
-                if (!appendedDates.includes(currDate)) {
-                    appendedDates.push(currDate)
-                    let temp = curr.main.temp;
+        // refresh + replace the displayed city name
+        $('#city-name').empty();
+        $('#city-name').append(displayMomentHere.text(' (' + currentMoment.format('l') + ') ') );
 
-                    $('searchedcities').append(
-                        getPanelHTML(currDateText, temp)
-                    )
-                    appendedCount++;
-                    if (appendedCount > 4) {
-                        break;
-                    }
-                }
-            }
-        }
-    })
-    generateSearchResults();
-    console.log(generateSearchResults)
+        var cityName = $('<h2>').text(response.name);
+        $('#city-name')
+
+    }
+    
+    )
+
+     
 }
+
+
+
+
+
+
+
+
 
 
 
