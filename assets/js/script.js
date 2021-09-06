@@ -1,3 +1,29 @@
+// search panel + buttons
+function citySearchBtns(searchListBtns) {
+    var searchDataReturn = Object.keys(searchListBtns);
+    console.log(searchDataReturn)
+
+    // let's make previous searches buttons in the side panel with loops + dynamically adding btns
+    for (var i = 0; i < cityProperty.length; i++) {
+        var theButtonGroup = $(':button');
+        theButtonGroup.addClass('list-group-item list-group-item-action')
+
+        // this is about to be the coolest thing I've learned yet
+        // need to make a secondary loop so that the past searched city text appear on buttons, so I will use 'J' instead of another i, just like in math class heheh
+        var makeCityNameCaps = searchDataReturn[i].toLowerCase().split('');
+        // bringin in that j
+        for (var j = 0; j < split.Str.length; j++) {
+            // charAt will help have the first letter turn capital only, since the index begins at 0 (first letter)
+            splitStr[j] = splitStr[j].charAt(0).toUpperCase()
+        }
+        // prepend to the DOM
+        var priorSearches = splitStr.join('');
+        citySearchBtns.text(makeCityNameCaps);
+        $('#searchedcities').prepend(theButtonGroup);
+
+    }
+}
+
 // generate the search result - office hours
 function generateSearchResults(searchForCityHere, searchListBtns) {
     var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
@@ -126,15 +152,6 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
     )
 }
 
-
-
-
-
-
-
-
-
-
 // format the doc to layout 
 $(document).ready(function () {
 
@@ -174,35 +191,27 @@ $(document).ready(function () {
 
 })
 
-// function formatWeather
-// // // // // // //
 
 
-// search panel + buttons
-function citySearchBtns(searchListBtns) {
-    var searchDataReturn = Object.keys(searchListBtns);
-    console.log(searchDataReturn)
 
-    // let's make previous searches buttons in the side panel with loops + dynamically adding btns
-    for (var i = 0; i < cityProperty.length; i++) {
-        var theButtonGroup = $(':button');
-        theButtonGroup.addClass('list-group-item list-group-item-action')
 
-        // this is about to be the coolest thing I've learned yet
-        // need to make a secondary loop so that the past searched city text appear on buttons, so I will use 'J' instead of another i, just like in math class heheh
-        var makeCityNameCaps = searchDataReturn[i].toLowerCase().split('');
-        // bringin in that j
-        for (var j = 0; j < split.Str.length; j++) {
-            // charAt will help have the first letter turn capital only, since the index begins at 0 (first letter)
-            splitStr[j] = splitStr[j].charAt(0).toUpperCase()
-        }
-        // prepend to the DOM
-        var priorSearches = splitStr.join('');
-        citySearchBtns.text(makeCityNameCaps);
-        $('#searchedcities').prepend(theButtonGroup);
 
-    }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
