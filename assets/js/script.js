@@ -34,7 +34,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?&appid=" + APIkey + "&q=" + searchForCityHere;
 
     // will build the buttons previously searched
-    citySearchBtns(searchListBtns);
+    makeCitySearchBtns(searchListBtns);
 
     // empty currently displayed content
     $('#tempnow, #windsnow, #humiditynow, #uvnow').empty();
@@ -49,10 +49,9 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         var displayMomentHere = $('<h2>');
         var currentMoment = moment();
 
-        // refresh + replace the displayed city name
+        // refresh + replace the displayed city name + current date (M/DD/YYYY) from moment.js
         $('citynamenow').empty();
         $('citynamenow').append(displayMomentHere.text(' (' + currentMoment.format('l') + ') '));
-
         var cityName = $('<h2>').text(response.name);
         $('#citynamenow').prepend(cityName);
 
