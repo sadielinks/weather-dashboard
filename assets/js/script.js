@@ -113,6 +113,29 @@ function generateSearchResults() {
             }).then(function (forecast) {
                 console.log(forecast);
 
+                // per openweathermap, things are updated every 3 hrs, 24 hrs from current, so set loop to continue the data pull 8 hours 
+                for (var i = 7; i < forecast.list.length; i += 8) {
+                    // display date in each card
+                    var forecastDateDisplay = $('<h3>');
+
+                     // using index for days 1-5
+                    var forecastIndexID = (i + 1) / 8;
+                    var forecastDayAdd = currentMoment.add(1, 'days').format("l");
+                    console.log("#forecast-date-" + forecastIndexID, i, forecastDayAdd);
+                    $("#forecast-date-" + forecastIndexID).empty();
+                    $("#forecast-date-" + forecastIndexID).append(forecastDate.text(forecastDayAdd));
+    
+                    var forecastIcon = $("<img>");
+                    forecastIcon.attr("src", "https://openweathermap.org/img/w/" + forecast.list[i].weather[0].icon + ".png");
+                    $("#forecast-icon-" + forecastIndexID).empty();
+                    $("#forecast-icon-" + forecastIndexID).append(forecastIcon);
+                    console.log(forecast.list[i].weather[0].icon);
+    
+                    var KtoCelciusForecast = (forecast.list[i].main.temp - 273.15).toFixed(2);
+                    $("#forecast-temp-" + forecastIndexID).text("Temp: " + KtoCelciusForecast + "\xB0C");
+                    $("#forecast-humidity-" + forecastIndexID).text("Humidity: " + forecast.list[i].main.humidity + "%");
+    
+                    $(".forecast").addClass("bg-primary text-white");
 
             })
         }
