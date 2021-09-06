@@ -1,36 +1,13 @@
-// Set up API key per https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys 
-// var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
-// var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchForCityHere + "&appid=" + APIKey;
-// var weatherUrl = 'api.openweathermap.org/data/2.5/weather?q={city name}&appid={' + APIKey
-// 
-
-
-// // fetching via bithacker <3
-// fetch('https://api.openweathermap.org/data/2.5/weather?id=&appid=' + APIKey)  
-//     .then(function(resp) { return resp.json() }) // Convert data to json
-//     .then(function(data) {
-//       console.log(data);
-//     })
-//     .catch(function() {
-//       // catch any errors
-//     });
-// //   window.onload = function() {
-// //     weatherBalloon( 4887398 );
-// //   }
-
-// Hmm... let's leave room to try ajax as well...
-
-
-
-
 // generate the search result - office hours
 function generateSearchResults(searchForCityHere, searchListBtns) {
     var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchForCityHere + "&appid=" + APIKey;
-    console.log(APIKey)
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?&appid=" + APIkey + "&q=" + searchForCityHere;
 
     // will build the buttons previously searched
     citySearchBtns(searchListBtns);
+
+    // empty currently displayed content
+    $('#tempnow, #windsnow, #humiditynow, #uvnow').empty();
 
     // the response lang comes directly from openweathermap <3
     $.ajax({
@@ -59,7 +36,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         // display temp
         // the data will come as K, so will need to convert it to °F
         // var convertKtoF =
-        var tempNow = $('<p>').text('Temperature: ' + convertKtoF + '°F');
+        var tempNow = $('<p>').text('Temp: ' + convertKtoF + '°F');
 
         //  display winds + humidity
         var windsNow = $('<p>').text('Wind Speed: ' + response.wind.speed + 'MPH');
@@ -71,9 +48,9 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         $('#windsnow').append(windwsNow);
         $('#humiditynow').append(humidityNow);
 
-        // build UV index
+        // build UV index variables
         var latitude = response.coord.lat;
-        var longitude = repsonse.coord.long;
+        var longitude = repsonse.coord.lon;
 
         // pull UV index
         var uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIkey + "&lat=" + latitude + "&lon=" + longitude;
@@ -97,16 +74,16 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                 // red is... severse lol help them, levels 8+
                 uvNow.addClass('p-3 mb-2 bg-danger text-white');
             }
+            // append UV value + color to the DOM
             uvNow.text(uvIndex.value);
             $('#uvnow').text('UV Index: ');
             $('#uvnow').append(uvNow);
 
             // now to build the 5 day card content!
             var forecastQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?&appid=" + APIKey + "&q=" + searchCity;
-            // var thisONE = 'https://api.openweathermap.org/data/2.5/forecast?q=' + 'citynamenow' '&appid=' + APIKey;
-            var forecastWeather = $("#fivedayforecast");
+            var forecastWeather = $('#fivedayforecast');
             // 
-            forecastWeather.addClass("pt-1");
+            forecastWeather.addClass('pt-1');
 
             $.ajax({
                 url: forecastQueryUrl,
@@ -119,24 +96,26 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                     // display date in each card
                     var forecastDateDisplay = $('<h3>');
 
-                     // using index for days 1-5
+                    // using index for days 1-5
                     var forecastIndexID = (i + 1) / 8;
-                    var forecastDayAdd = currentMoment.add(1, 'days').format("l");
-                    console.log("#forecast-date-" + forecastIndexID, i, forecastDayAdd);
-                    $("#forecast-date-" + forecastIndexID).empty();
-                    $("#forecast-date-" + forecastIndexID).append(forecastDate.text(forecastDayAdd));
-    
-                    var forecastIcon = $("<img>");
-                    forecastIcon.attr("src", "https://openweathermap.org/img/w/" + forecast.list[i].weather[0].icon + ".png");
-                    $("#forecast-icon-" + forecastIndexID).empty();
-                    $("#forecast-icon-" + forecastIndexID).append(forecastIcon);
-                    console.log(forecast.list[i].weather[0].icon);
-    
-                    var KtoCelciusForecast = (forecast.list[i].main.temp - 273.15).toFixed(2);
-                    $("#forecast-temp-" + forecastIndexID).text("Temp: " + KtoCelciusForecast + "\xB0C");
-                    $("#forecast-humidity-" + forecastIndexID).text("Humidity: " + forecast.list[i].main.humidity + "%");
-    
+                    var forecastDayAdd = currentMoment.add(1, 'days').format('l');
+                    console.log('#forecast-date-' + forecastIndexID, i, forecastDayAdd);
+                    $('#forecast-date-' + forecastIndexID).empty();
+                    $('#forecast-date' + forecastIndexID).append(forecastDate.text(forecastDayAdd));
 
+                    var forecastIcon = $('<img>');
+                    forecastIcon.attr('src', "https://openweathermap.org/img/w/" + forecast.list[i].weather[0].icon + '.png');
+                    $('#forecast-icon-' + forecastIndexID).empty();
+                    $('#forecast-icon-' + forecastIndexID).append(forecastIcon);
+                    console.log(forecast.list[i].weather[0].icon);
+
+                    var KtoCelciusForecast = (forecast.list[i].main.temp - 273.15).toFixed(2);
+                    $('#forecast-temp-' + forecastIndexID).text('Temp: ' + KtoCelciusForecast + '°F');
+                    var currentWind = $('<p>').text('Wind Speed: ' + response.wind.speed + ' MPH');
+                    $('')
+                    $('#forecast-humidity-' + forecastIndexID).text('Humidity: ' + forecast.list[i].main.humidity + '%');
+
+                }
             })
         }
 
@@ -144,7 +123,8 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
 
 
     }
-
+    )
+}
 
 
 
@@ -158,41 +138,41 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
 // format the doc to layout 
 $(document).ready(function () {
 
-        // let's make the search button do it's thang
-        $('#searchBtn').on('click', function (event) {
-            event.preventDefault();
-            //
-            var searchForCityHere = $('#searchforcityhere').val().trim();
+    // let's make the search button do it's thang
+    $('#searchBtn').on('click', function (event) {
+        event.preventDefault();
+        //
+        var searchForCityHere = $('#searchforcityhere').val().trim();
 
-            // save search to local storage with setItem
-            if (searchForCityHere != '') {
-                searchListBtns(searchForCityHere) = true;
-                localStorage.setItem('searchListBtns', JSON.stringify(searchListBtns));
+        // save search to local storage with setItem
+        if (searchForCityHere != '') {
+            searchListBtns(searchForCityHere) = true;
+            localStorage.setItem('searchListBtns', JSON.stringify(searchListBtns));
 
-                showThemResults(searchListBtns, searchListBtns);
+            showThemResults(searchListBtns, searchListBtns);
 
-                // display the current city selection
-                $('#displayweathernow').show();
-                // display the 5 day forecast cards
-                $('#fivedayforecast').show();
-            }
-        })
-
-        // hide the current city selection when not showin them results
-        $('#displayweathernow').hide();
-        // hide the 5 day forecast cards as well
-        $('#fivedayforecast').hide();
-
-        // prevent old search results in main display
-        var searchListBtns = JSON.parse(localStorage.getItem('searchListBtns'));
-        // if statment so user cannot submit an 'empty' search, thx stackoverflow
-        if (searchListBtns === null) {
-            searchListBtns = {};
+            // display the current city selection
+            $('#displayweathernow').show();
+            // display the 5 day forecast cards
+            $('#fivedayforecast').show();
         }
-
-        // lol I'll need to make a function to have the previously searched cities appear in the side panel but let's come back for that later heheh...
-
     })
+
+    // hide the current city selection when not showin them results
+    $('#displayweathernow').hide();
+    // hide the 5 day forecast cards as well
+    $('#fivedayforecast').hide();
+
+    // prevent old search results in main display
+    var searchListBtns = JSON.parse(localStorage.getItem('searchListBtns'));
+    // if statment so user cannot submit an 'empty' search, thx stackoverflow
+    if (searchListBtns === null) {
+        searchListBtns = {};
+    }
+
+    // lol I'll need to make a function to have the previously searched cities appear in the side panel but let's come back for that later heheh...
+
+})
 
 // function formatWeather
 // // // // // // //
@@ -200,26 +180,51 @@ $(document).ready(function () {
 
 // search panel + buttons
 function citySearchBtns(searchListBtns) {
-            var searchDataReturn = Object.keys(searchListBtns);
-            console.log(searchDataReturn)
+    var searchDataReturn = Object.keys(searchListBtns);
+    console.log(searchDataReturn)
 
-            // let's make previous searches buttons in the side panel with loops + dynamically adding btns
-            for (var i = 0; i < cityProperty.length; i++) {
-                var theButtonGroup = $(':button');
-                theButtonGroup.addClass('list-group-item list-group-item-action')
+    // let's make previous searches buttons in the side panel with loops + dynamically adding btns
+    for (var i = 0; i < cityProperty.length; i++) {
+        var theButtonGroup = $(':button');
+        theButtonGroup.addClass('list-group-item list-group-item-action')
 
-                // this is about to be the coolest thing I've learned yet
-                // need to make a secondary loop so that the past searched city text appear on buttons, so I will use 'J' instead of another i, just like in math class heheh
-                var makeCityNameCaps = searchDataReturn[i].toLowerCase().split('');
-                // bringin in that j
-                for (var j = 0; j < split.Str.length; j++) {
-                    // charAt will help have the first letter turn capital only, since the index begins at 0 (first letter)
-                    splitStr[j] = splitStr[j].charAt(0).toUpperCase()
-                }
-                // prepend to the DOM
-                var priorSearches = splitStr.join('');
-                citySearchBtns.text(makeCityNameCaps);
-                $('#searchedcities').prepend(theButtonGroup);
-
-            }
+        // this is about to be the coolest thing I've learned yet
+        // need to make a secondary loop so that the past searched city text appear on buttons, so I will use 'J' instead of another i, just like in math class heheh
+        var makeCityNameCaps = searchDataReturn[i].toLowerCase().split('');
+        // bringin in that j
+        for (var j = 0; j < split.Str.length; j++) {
+            // charAt will help have the first letter turn capital only, since the index begins at 0 (first letter)
+            splitStr[j] = splitStr[j].charAt(0).toUpperCase()
         }
+        // prepend to the DOM
+        var priorSearches = splitStr.join('');
+        citySearchBtns.text(makeCityNameCaps);
+        $('#searchedcities').prepend(theButtonGroup);
+
+    }
+}
+
+
+
+// Set up API key per https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys 
+// var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
+// var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchForCityHere + "&appid=" + APIKey;
+// var weatherUrl = 'api.openweathermap.org/data/2.5/weather?q={city name}&appid={' + APIKey
+// 
+
+
+// // fetching via bithacker <3
+// fetch('https://api.openweathermap.org/data/2.5/weather?id=&appid=' + APIKey)  
+//     .then(function(resp) { return resp.json() }) // Convert data to json
+//     .then(function(data) {
+//       console.log(data);
+//     })
+//     .catch(function() {
+//       // catch any errors
+//     });
+// //   window.onload = function() {
+// //     weatherBalloon( 4887398 );
+// //   }
+
+// Hmm... let's leave room to try ajax as well...
+
