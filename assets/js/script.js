@@ -24,9 +24,10 @@
 
 
 // generate the search result - office hours
-function generateSearchResults() {
+function generateSearchResults(searchForCityHere, searchListBtns) {
     var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchForCityHere + "&appid=" + APIKey;
+    console.log(APIKey)
 
     // will build the buttons previously searched
     citySearchBtns(searchListBtns);
@@ -135,7 +136,6 @@ function generateSearchResults() {
                     $("#forecast-temp-" + forecastIndexID).text("Temp: " + KtoCelciusForecast + "\xB0C");
                     $("#forecast-humidity-" + forecastIndexID).text("Humidity: " + forecast.list[i].main.humidity + "%");
     
-                    $(".forecast").addClass("bg-primary text-white");
 
             })
         }
