@@ -23,45 +23,43 @@
     <!-- Placing site display silhouettes with bootstrap -->
     <main class="container-fluid">
         <div class=row>
-          <div class="col-md-3 bg-light">
-            <h5 id='trueh2'>📍 Search for a City:</h5>
-            <form class="form-inline">
-              <div class="form-group">
-                <input id='searchThatCity' class='form-input' type='text' placeholder='find the weather in...'>
-             </div>
-             <button class='btn btn-light' id='searchCityBtn' type='submit'>
-              <i class="fas fa-search"></i></button>
-              </button>
-              <button class="btn clearBtn" id="clearBtn" title="clearpastsearches">
-                <i class='fas fa-times-circle'></i></button>
-            </form>
-            <div>
-              <ul class="list-group" id="city-list"></ul>
+            <div class="col-md-3 bg-light">
+                <h5 id='trueh2'>📍 Search for a City:</h5>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input id='searchThatCity' class='form-input' type='text' placeholder='find the weather in...'>
+                    </div>
+                    <button class='btn btn-light' id='searchCityBtn' type='submit'>
+                        <i class="fas fa-search"></i></button>
+                    </button>
+                    <button class="btn clearBtn" id="clearBtn" title="clearpastsearches">
+                        <i class='fas fa-times-circle'></i></button>
+                </form>
+                <div>
+                    <ul class="list-group" id="city-list"></ul>
+                </div>
             </div>
-          </div>
 
 
             <!-- search result display -->
             <div class="col-md-9">
-                <div class='card' id='currentWeather'>
+                <div class='card' id="current-weather">
                     <div class="card-body">
-                        <div id='searchresultcitydate'>
+                        <div id="city-date-icon">
                             <span id='city-name'>
                             </span>
-                            <span id='iconsnow'></span>
+                            <span id='current-icon'></span>
                         </div>
-                        <!-- display the current conditions -->
-                        <p class="card-text" id='tempnow'></p>
-                        <p class="card-text" id='windnow'></p>
+                        <p class="card-text" id='tempsnow'></p>
+                        <p class="card-text" id='windsnow'></p>
                         <p class="card-text" id='humiditynow'></p>
                         <p class="card-text" id='uvnow'></p>
-                        </ul>
                     </div>
                 </div>
-                
+
 
                 <div class="row">
-                    <div class="col-md-12" id='forecastWeather'>
+                    <div class="col-md-12" id='forecast-weather'>
                         <h4>5-Day Forecast:</h4>
                         <div id='fivedaycards'>
                             <!-- building 5 day forecast containers -->

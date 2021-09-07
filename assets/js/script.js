@@ -10,8 +10,8 @@ function makeCitySearchBtns(searchListBtns) {
     console.log(searchDataReturn)
     // let's make previous searches buttons in the side panel with loops + dynamically adding btns
     for (var i = 0; i < searchDataReturn.length; i++) {
-        var theButtonGroup = $('<button>');
-        theButtonGroup.addClass('list-group-item list-group-item-action')
+        var CitySearchBtns = $('<button>');
+        CitySearchBtns.addClass('list-group-item list-group-item-action')
 
         // this is about to be the coolest thing I've learned yet
         // need to make a secondary loop so that the past searched city text appear on buttons, so I will use 'J' instead of another i, just like in math class heheh
@@ -24,14 +24,14 @@ function makeCitySearchBtns(searchListBtns) {
         // prepend to the DOM
         var priorSearches = makeCityNameCaps.join('');
         CitySearchBtns.text(priorSearches);
-        $('#searchedcities').prepend(theButtonGroup);
+        $('#searchedcities').prepend(CitySearchBtns);
     }
 };
 
 // TWOOOOOOOOOOOOOOOOOOO generate the search result - office hours
 function generateSearchResults(searchForCityHere, searchListBtns) {
     var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?&appid=" + APIkey + "&q=" + searchForCityHere;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?&appid=" + APIKey + "&q=" + searchForCityHere;
 
     // will build the buttons previously searched
     makeCitySearchBtns(searchListBtns);
@@ -60,7 +60,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         $('#iconsnow').append(weatherIcon);
 
         var cityName = $('<h2>').text(response.name);
-        $('#city-name').prepend(cityName);
+        $('#citynamenow').prepend(cityName);
 
         // display temp
         // the data will come as K, so will need to convert it to °F
@@ -82,7 +82,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         var longitude = repsonse.coord.lon;
 
         // pull UV index via openweathermap
-        var uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIkey + "&lat=" + latitude + "&lon=" + longitude;
+        var uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + latitude + "&lon=" + longitude;
 
         // display UV index using ajax
         $.ajax({
@@ -110,7 +110,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
 
             // now to build the 5 day card content!
             var forecastQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?&appid=" + APIKey + "&q=" + searchCity;
-            var forecastWeather = $('#forecastWeather');
+            var forecastWeather = $('#forecast-weather');
             forecastWeather.addClass('pt-3');
 
             $.ajax({
@@ -159,8 +159,8 @@ $(document).ready(function () {
     }
     makeCitySearchBtns(searchListBtns)
 
-    $("#currentWeather").hide();
-    $("#forecastWeather").hide();
+    $("#current-weather").hide();
+    $("#forecast-weather").hide();
 
     // let's make the search button do it's thang
     $('#searchCityBtn').on('click', function (event) {
@@ -175,8 +175,8 @@ $(document).ready(function () {
 
             generateSearchResults(searchForCityHere, searchListBtns);
 
-            $('#currentWeather').show();
-            $('#forecastWeather').show();
+            $('#current-weather').show();
+            $('#forecast-weather').show();
         }
     })
 
@@ -187,7 +187,7 @@ $(document).ready(function () {
     generateSearchResults(searchForCityHere, searchListBtns);
 
     // Show these divs when a city list button is clicked
-    $("#currentWeather").show();
-    $("#forecastWeather").show();
+    $("#current-weather").show();
+    $("#forecast-weather").show();
   })
 });

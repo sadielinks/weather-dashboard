@@ -38,6 +38,9 @@ body {
   display: flex;
 }
 
+.forcast {
+  background-color: darkseagreen;
+}
 /* #fivedayforecast {
   margin: 20px, 10px;
 }  */
