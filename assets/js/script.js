@@ -180,14 +180,16 @@ $(document).ready(function () {
         }
     })
 
-    
+  $("#searchForCityHere").on("click", "button", function (event) {
+    event.preventDefault();
+    var searchForCityHere = $(this).text();
 
-    $('#currentWeather').hide();
-    $('#forecastWeather').hide();
+    generateSearchResults(searchForCityHere, searchListBtns);
 
-
-    // lol I'll need to make a function to have the previously searched cities appear in the side panel but let's come back for that later heheh...
-
+    // Show these divs when a city list button is clicked
+    $("#currentWeather").show();
+    $("#forecastWeather").show();
+  })
 })
 
 
@@ -235,4 +237,3 @@ $(document).ready(function () {
 // //   }
 
 // Hmm... let's leave room to try ajax as well...
-
