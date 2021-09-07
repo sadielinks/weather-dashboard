@@ -1,10 +1,8 @@
 // ONEEEEEEEEEEEEEEEEEE search panel + buttons
 function makeCitySearchBtns(searchListBtns) {
-
-
     // OH! adding this here now to stop the current values from adding on top of another, and rather replacing 
     $('#searchedcities').empty();
-    $('#searchedcities').addClass('pt-2');
+    $('#searchedcities').addClass('pt-3');
 
     var searchDataReturn = Object.keys(searchListBtns);
     console.log(searchDataReturn)
@@ -44,7 +42,6 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         url: queryURL,
         method: 'GET'
     }).then(function (repsonse) {
-        console.log(repsonse);
 
         var displayMomentHere = $('<h2>');
         var currentMoment = moment();
@@ -54,13 +51,14 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         $('city-name').append(displayMomentHere.text(' (' + currentMoment.format('l') + ') '));
 
         // refresh + replace the displayed icon next to date
-        var weatherIcon = $('<img>');
-        weatherIcon.attr('src', "https://openweathermap.org/img/w/" + response.weather[0].icon + '.png');
         $('#iconsnow').empty();
         $('#iconsnow').append(weatherIcon);
 
         var cityName = $('<h2>').text(response.name);
         $('#citynamenow').prepend(cityName);
+        var weatherIcon = $('<img>');
+        weatherIcon.attr('src', "https://openweathermap.org/img/w/" + response.weather[0].icon + '.png');
+
 
         // display temp
         // the data will come as K, so will need to convert it to °F
@@ -74,7 +72,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
 
         // apend to the right places in DOM
         $('#tempnow').append(tempNow);
-        $('#windsnow').append(windwsNow);
+        $('#windsnow').append(windsNow);
         $('#humiditynow').append(humidityNow);
 
         // build UV index variables
@@ -133,8 +131,8 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
 
                     var forecastIcon = $('<img>');
                     forecastIcon.attr('src', "https://openweathermap.org/img/w/" + forecast.list[i].weather[0].icon + '.png');
-                    $('#forecast-icon-' + forecastIndexID).empty();
-                    $('#forecast-icon-' + forecastIndexID).append(forecastIcon);
+                    $('#icon-' + forecastIndexID).empty();
+                    $('#icon-' + forecastIndexID).append(forecastIcon);
                     console.log(forecast.list[i].weather[0].icon);
 
                     // var convertKtoFAgain = (forecast.list[i].main.temp - `273.15) × 9/5 + 32`)
