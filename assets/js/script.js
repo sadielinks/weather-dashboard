@@ -50,8 +50,8 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         var currentMoment = moment();
 
         // refresh + replace the displayed city name + current date (M/DD/YYYY) from moment.js
-        $('citynamenow').empty();
-        $('citynamenow').append(displayMomentHere.text(' (' + currentMoment.format('l') + ') '));
+        $('city-name').empty();
+        $('city-name').append(displayMomentHere.text(' (' + currentMoment.format('l') + ') '));
 
         // refresh + replace the displayed icon next to date
         var weatherIcon = $('<img>');
@@ -60,7 +60,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         $('#iconsnow').append(weatherIcon);
 
         var cityName = $('<h2>').text(response.name);
-        $('#citynamenow').prepend(cityName);
+        $('#city-name').prepend(cityName);
 
         // display temp
         // the data will come as K, so will need to convert it to °F

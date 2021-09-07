@@ -29,8 +29,8 @@
               <div class="form-group">
                 <input id='searchThatCity' class='form-input' type='text' placeholder='find the weather in...'>
              </div>
-                <button class="btn btn-primary" id="searchBtn" type="submit">
-                <i class="fas fa-search"></i>
+             <button class='btn btn-light' id='searchCityBtn' type='submit'>
+              <i class="fas fa-search"></i></button>
               </button>
               <button class="btn clearBtn" id="clearBtn" title="clearpastsearches">
                 <i class='fas fa-times-circle'></i></button>
@@ -46,7 +46,7 @@
                 <div class='card' id='currentWeather'>
                     <div class="card-body">
                         <div id='searchresultcitydate'>
-                            <span id='citynamenow'>
+                            <span id='city-name'>
                             </span>
                             <span id='iconsnow'></span>
                         </div>
@@ -58,12 +58,12 @@
                         </ul>
                     </div>
                 </div>
+                
 
                 <div class="row">
                     <div class="col-md-12" id='forecastWeather'>
                         <h4>5-Day Forecast:</h4>
                         <div id='fivedaycards'>
-
                             <!-- building 5 day forecast containers -->
                             <div class="card forecast">
                                 <div class="card-body" id='forecastday-1'>
@@ -76,6 +76,7 @@
                                 </div>
                             </div>
 
+
                             <div class="card forecast">
                                 <div class="card-body" id='forecastday-2'>
                                     <span class="card-title" id='forecastdate-2'>
@@ -86,6 +87,7 @@
                                     <p class="card-text" id='humidityday-2'></p>
                                 </div>
                             </div>
+
 
                             <div class="card forecast">
                                 <div class="card-body" id='forecastday-3'>
@@ -98,6 +100,7 @@
                                 </div>
                             </div>
 
+
                             <div class="card forecast">
                                 <div class="card-body" id='forecastday-4'>
                                     <span class="card-title" id='forecastdate-4'>
@@ -109,6 +112,7 @@
                                 </div>
                             </div>
 
+
                             <div class="card forecast">
                                 <div class="card-body" id='forecastday-5'>
                                     <span class="card-title" id='forecastdate-5'>
@@ -119,6 +123,8 @@
                                     <p class="card-text" id='humidityday-5'></p>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
