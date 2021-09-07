@@ -52,21 +52,21 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         // refresh + replace the displayed city name + current date (M/DD/YYYY) from moment.js
         $('citynamenow').empty();
         $('citynamenow').append(displayMomentHere.text(' (' + currentMoment.format('l') + ') '));
-        var cityName = $('<h2>').text(response.name);
-        $('#citynamenow').prepend(cityName);
 
-        // icon placement
+        // refresh + replace the displayed icon next to date
         var weatherIcon = $('<img>');
         weatherIcon.attr('src', "https://openweathermap.org/img/w/" + response.weather[0].icon + '.png');
-
         $('#iconsnow').empty();
         $('#iconsnow').append(weatherIcon);
 
+        var cityName = $('<h2>').text(response.name);
+        $('#citynamenow').prepend(cityName);
+
         // display temp
         // the data will come as K, so will need to convert it to °F
-        // var convertKtoF =
+        // var convertKtoF = (response.main.temp - `273.15) × 9/5 + 32`)
+        // 
         var tempNow = $('<p>').text('Temp: ' + convertKtoF + '°F');
-
         //  display winds + humidity
         var windsNow = $('<p>').text('Wind Speed: ' + response.wind.speed + 'MPH');
         var humidityNow = $('<p>').text('Humidity: ' + response.main.humidity + '%');
@@ -81,7 +81,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         var latitude = response.coord.lat;
         var longitude = repsonse.coord.lon;
 
-        // pull UV index
+        // pull UV index via openweathermap
         var uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIkey + "&lat=" + latitude + "&lon=" + longitude;
 
         // display UV index using ajax
@@ -111,8 +111,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
             // now to build the 5 day card content!
             var forecastQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?&appid=" + APIKey + "&q=" + searchCity;
             var forecastWeather = $('#fivedayforecast');
-            // 
-            forecastWeather.addClass('pt-1');
+            forecastWeather.addClass('pt-3');
 
             $.ajax({
                 url: forecastQueryUrl,
@@ -130,7 +129,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                     var forecastDayAdd = currentMoment.add(1, 'days').format('l');
                     console.log('#forecast-date-' + forecastIndexID, i, forecastDayAdd);
                     $('#forecast-date-' + forecastIndexID).empty();
-                    $('#forecast-date' + forecastIndexID).append(forecastDate.text(forecastDayAdd));
+                    $('#forecast-date' + forecastIndexID).append(forecastDateDisplay.text(forecastDayAdd));
 
                     var forecastIcon = $('<img>');
                     forecastIcon.attr('src', "https://openweathermap.org/img/w/" + forecast.list[i].weather[0].icon + '.png');
@@ -138,19 +137,14 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                     $('#forecast-icon-' + forecastIndexID).append(forecastIcon);
                     console.log(forecast.list[i].weather[0].icon);
 
-                    var KtoCelciusForecast = (forecast.list[i].main.temp - 273.15).toFixed(2);
-                    $('#forecast-temp-' + forecastIndexID).text('Temp: ' + KtoCelciusForecast + '°F');
-                    var currentWind = $('<p>').text('Wind Speed: ' + response.wind.speed + ' MPH');
-                    $('')
+                    // var convertKtoFAgain = (forecast.list[i].main.temp - `273.15) × 9/5 + 32`)
+                    $('#forecast-temp-' + forecastIndexID).text('Temp: ' + convertKtoFAgain + '°F');
+                    $("#windsday-" + forecastIndexID).text("Winds: " + forecast.list[i].wind.speed + " MPH");
                     $('#forecast-humidity-' + forecastIndexID).text('Humidity: ' + forecast.list[i].main.humidity + '%');
-
                 }
             })
         }
-
         )
-
-
     }
     )
 }
@@ -183,8 +177,7 @@ $(document).ready(function () {
     // hide the 5 day forecast cards as well
     $('#fivedayforecast').hide();
 
-    // prevent old search results in main display
-    var searchListBtns = JSON.parse(localStorage.getItem('searchListBtns'));
+    
     // if statment so user cannot submit an 'empty' search, thx stackoverflow
     if (searchListBtns === null) {
         searchListBtns = {};
