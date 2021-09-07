@@ -129,7 +129,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                     var forecastDayAdd = currentMoment.add(1, 'days').format('l');
                     console.log('#forecastdate-' + forecastIndexID, i, forecastDayAdd);
                     $('#forecastdate-' + forecastIndexID).empty();
-                    $('#forecastdate' + forecastIndexID).append(forecastDateDisplay.text(forecastDayAdd));
+                    $('#forecastdate-' + forecastIndexID).append(forecastDateDisplay.text(forecastDayAdd));
 
                     var forecastIcon = $('<img>');
                     forecastIcon.attr('src', "https://openweathermap.org/img/w/" + forecast.list[i].weather[0].icon + '.png');

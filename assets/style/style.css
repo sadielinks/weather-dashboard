@@ -1,3 +1,7 @@
+* {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
@@ -13,37 +17,35 @@ body {
     flex-wrap: wrap;
   }
 
-#trueh2 {
+header {
+  background-image:linear-gradient( black, rgb(108, 75, 94));
+  color: thistle;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.container-fluid .row div h5 {
   font-weight: bold;
-  background-color: whitesmoke;
 }
 
-#displayweathernow {
+#city-date-icon,
+#city-name,
+#current-icon, #forecast-cards
+{
   display: flex;
 }
 
-#city-name{
-  display: flex;
+#forecast-div {
+  margin-top: 20px;
 }
 
-#current-icon{
-  display: flex;
+#forecast-weather {
+  width: 100%;
 }
 
-#fivedayforecast{
-  display: flex;
+.forecast {
+  margin: 20px;
 }
-
-#fivedaycards{
-  display: flex;
-}
-
-.forcast {
-  background-color: darkseagreen;
-}
-/* #fivedayforecast {
-  margin: 20px, 10px;
-}  */
 
 
 
