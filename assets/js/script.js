@@ -138,9 +138,9 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                     console.log(forecast.list[i].weather[0].icon);
 
                     // var convertKtoFAgain = (forecast.list[i].main.temp - `273.15) × 9/5 + 32`)
-                    $('#tempday-' + forecastIndexID).text('Temp: ' + convertKtoFAgain + '°F');
-                    $("#windsday-" + forecastIndexID).text("Winds: " + forecast.list[i].wind.speed + " MPH");
-                    $('#humidityday-' + forecastIndexID).text('Humidity: ' + forecast.list[i].main.humidity + '%');
+                    $('#temp-' + forecastIndexID).text('Temp: ' + convertKtoFAgain + '°F');
+                    $("#winds-" + forecastIndexID).text("Winds: " + forecast.list[i].wind.speed + " MPH");
+                    $('#humidity-' + forecastIndexID).text('Humidity: ' + forecast.list[i].main.humidity + '%');
                 }
             })
         }
