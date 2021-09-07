@@ -57,8 +57,8 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         var currentMoment = moment();
 
         // refresh + replace the displayed city name + current date (M/DD/YYYY) from moment.js
-        $('city-name').empty();
-        $('city-name').append(displayMomentHere.text(' (' + currentMoment.format('l') + ') '));
+        $('#city-name').empty();
+        $("#city-name").append(displayMomentHere.text(" (" + currentMoment.format("l") + ") "));
 
         var cityName = $('<h2>').text(response.name);
         $('#citynamenow').prepend(cityName);
@@ -66,8 +66,8 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         weatherIcon.attr('src', "https://openweathermap.org/img/w/" + response.weather[0].icon + '.png');
 
          // refresh + replace the displayed icon next to date
-         $('#iconsnow').empty();
-         $('#iconsnow').append(weatherIcon);
+         $('#iconsnow-').empty();
+         $('#iconsnow-').append(weatherIcon);
 
 
         // display temp
@@ -165,7 +165,7 @@ $(document).ready(function () {
      if (searchListBtns === null) {
         searchListBtns = {};
     }
-    makeCitySearchBtns(searchListBtns)
+    makeCitySearchBtns(searchListBtns);
 
     $("#current-weather").hide();
     $("#forecast-weather").hide();
