@@ -1,4 +1,4 @@
-// search panel + buttons
+// ONEEEEEEEEEEEEEEEEEE search panel + buttons
 function makeCitySearchBtns(searchListBtns) {
 
 
@@ -28,7 +28,7 @@ function makeCitySearchBtns(searchListBtns) {
     }
 }
 
-// generate the search result - office hours
+// TWOOOOOOOOOOOOOOOOOOO generate the search result - office hours
 function generateSearchResults(searchForCityHere, searchListBtns) {
     var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?&appid=" + APIkey + "&q=" + searchForCityHere;
@@ -127,9 +127,9 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                     // using index for days 1-5
                     var forecastIndexID = (i + 1) / 8;
                     var forecastDayAdd = currentMoment.add(1, 'days').format('l');
-                    console.log('#forecast-date-' + forecastIndexID, i, forecastDayAdd);
-                    $('#forecast-date-' + forecastIndexID).empty();
-                    $('#forecast-date' + forecastIndexID).append(forecastDateDisplay.text(forecastDayAdd));
+                    console.log('#forecastdate-' + forecastIndexID, i, forecastDayAdd);
+                    $('#forecastdate-' + forecastIndexID).empty();
+                    $('#forecastdate' + forecastIndexID).append(forecastDateDisplay.text(forecastDayAdd));
 
                     var forecastIcon = $('<img>');
                     forecastIcon.attr('src', "https://openweathermap.org/img/w/" + forecast.list[i].weather[0].icon + '.png');
@@ -138,9 +138,9 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                     console.log(forecast.list[i].weather[0].icon);
 
                     // var convertKtoFAgain = (forecast.list[i].main.temp - `273.15) × 9/5 + 32`)
-                    $('#forecast-temp-' + forecastIndexID).text('Temp: ' + convertKtoFAgain + '°F');
+                    $('#tempday-' + forecastIndexID).text('Temp: ' + convertKtoFAgain + '°F');
                     $("#windsday-" + forecastIndexID).text("Winds: " + forecast.list[i].wind.speed + " MPH");
-                    $('#forecast-humidity-' + forecastIndexID).text('Humidity: ' + forecast.list[i].main.humidity + '%');
+                    $('#humidityday-' + forecastIndexID).text('Humidity: ' + forecast.list[i].main.humidity + '%');
                 }
             })
         }
@@ -149,8 +149,15 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
     )
 }
 
-// format the doc to layout 
+// THREEEEEEEEEEEEEEEEEE format the doc to layout 
 $(document).ready(function () {
+    var searchListBtns = JSON.parse(localStorage.getItem('searchListBtns'));
+
+     // if statment so user cannot submit an 'empty' search, thx stackoverflow
+     if (searchListBtns === null) {
+        searchListBtns = {};
+    }
+    makeCitySearchBtns(searchListBtns)
 
     // let's make the search button do it's thang
     $('#searchBtn').on('click', function (event) {
@@ -163,7 +170,7 @@ $(document).ready(function () {
             searchListBtns(searchForCityHere) = true;
             localStorage.setItem('searchListBtns', JSON.stringify(searchListBtns));
 
-            showThemResults(searchListBtns, searchListBtns);
+            generateSearchResults(searchListBtns, searchListBtns);
 
             // display the current city selection
             $('#displayweathernow').show();
@@ -177,11 +184,6 @@ $(document).ready(function () {
     // hide the 5 day forecast cards as well
     $('#fivedayforecast').hide();
 
-    
-    // if statment so user cannot submit an 'empty' search, thx stackoverflow
-    if (searchListBtns === null) {
-        searchListBtns = {};
-    }
 
     // lol I'll need to make a function to have the previously searched cities appear in the side panel but let's come back for that later heheh...
 

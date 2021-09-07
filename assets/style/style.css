@@ -5,8 +5,8 @@ body {
 .jumbotron {
     text-align: center;
     /* might I just add that I am *VERY* happy with this gradient, she's fantastic! */
-    background-image:linear-gradient(white, darkslateblue);
-    color: midnightblue;
+    background-image:linear-gradient( whitesmoke, rgb(143, 132, 215));
+    color: darkslateblue;
     text-align: center;
     padding: 10px;
     display: flex;
