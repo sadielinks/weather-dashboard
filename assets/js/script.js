@@ -27,16 +27,16 @@ function makeCitySearchBtns(searchListBtns) {
 };
 
 // TWOOOOOOOOOOOOOOOOOOO generate the search result - office hours
-function generateSearchResults(searchForCityHere, searchListBtns) {
+function generateSearchResults(searchForCityHere, searchListBtns, getData) {
     var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?&appid=" + APIKey + "&q=" + searchForCityHere;
-
-    // will build the buttons previously searched
-    makeCitySearchBtns(searchListBtns);
 
     // empty currently displayed content
     $('#tempnow, #windsnow, #humiditynow, #uvnow').empty();
 
+    // will build the buttons previously searched
+    makeCitySearchBtns(searchListBtns);
+    
     // the response lang comes directly from openweathermap <3
 
     // fetch(queryURL)
@@ -47,7 +47,11 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
     $.ajax({
         url: queryURL,
         method: 'GET',
+        error: function() {
+            alert('Please enter a valid city name');
+        }
     }).then(function (repsonse) {
+        getData(response)
         console.log(response)
 
         var displayMomentHere = $('<h2>');
