@@ -26,7 +26,7 @@ function makeCitySearchBtns(searchListBtns) {
         CitySearchBtns.text(priorSearches);
         $('#searchedcities').prepend(theButtonGroup);
     }
-}
+};
 
 // TWOOOOOOOOOOOOOOOOOOO generate the search result - office hours
 function generateSearchResults(searchForCityHere, searchListBtns) {
@@ -147,7 +147,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         )
     }
     )
-}
+};
 
 // THREEEEEEEEEEEEEEEEEE format the doc to layout 
 $(document).ready(function () {
@@ -163,7 +163,7 @@ $(document).ready(function () {
     $("#forecastWeather").hide();
 
     // let's make the search button do it's thang
-    $('#searchBtn').on('click', function (event) {
+    $('#searchCityBtn').on('click', function (event) {
         event.preventDefault();
         //
         var searchForCityHere = $('#searchThatCity').val().trim().toLowerCase();;
@@ -190,50 +190,4 @@ $(document).ready(function () {
     $("#currentWeather").show();
     $("#forecastWeather").show();
   })
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Set up API key per https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys 
-// var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
-// var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchForCityHere + "&appid=" + APIKey;
-// var weatherUrl = 'api.openweathermap.org/data/2.5/weather?q={city name}&appid={' + APIKey
-// 
-
-
-// // fetching via bithacker <3
-// fetch('https://api.openweathermap.org/data/2.5/weather?id=&appid=' + APIKey)  
-//     .then(function(resp) { return resp.json() }) // Convert data to json
-//     .then(function(data) {
-//       console.log(data);
-//     })
-//     .catch(function() {
-//       // catch any errors
-//     });
-// //   window.onload = function() {
-// //     weatherBalloon( 4887398 );
-// //   }
-
-// Hmm... let's leave room to try ajax as well...
+});
