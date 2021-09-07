@@ -38,10 +38,17 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
     $('#tempnow, #windsnow, #humiditynow, #uvnow').empty();
 
     // the response lang comes directly from openweathermap <3
+
+    // fetch(queryURL)
+    //     .then(function (response) {
+    //         return response.json();
+    //   })
+    
     $.ajax({
         url: queryURL,
-        method: 'GET'
+        method: 'GET',
     }).then(function (repsonse) {
+        console.log(response)
 
         var displayMomentHere = $('<h2>');
         var currentMoment = moment();
@@ -50,14 +57,14 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         $('city-name').empty();
         $('city-name').append(displayMomentHere.text(' (' + currentMoment.format('l') + ') '));
 
-        // refresh + replace the displayed icon next to date
-        $('#iconsnow').empty();
-        $('#iconsnow').append(weatherIcon);
-
         var cityName = $('<h2>').text(response.name);
         $('#citynamenow').prepend(cityName);
         var weatherIcon = $('<img>');
         weatherIcon.attr('src', "https://openweathermap.org/img/w/" + response.weather[0].icon + '.png');
+
+         // refresh + replace the displayed icon next to date
+         $('#iconsnow').empty();
+         $('#iconsnow').append(weatherIcon);
 
 
         // display temp
