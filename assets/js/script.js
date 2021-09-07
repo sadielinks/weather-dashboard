@@ -81,7 +81,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
 
 
         // apend to the right places in DOM
-        $('#tempnow').append(tempNow);
+        $('#tempsnow').append(tempNow);
         $('#windsnow').append(windsNow);
         $('#humiditynow').append(humidityNow);
 
