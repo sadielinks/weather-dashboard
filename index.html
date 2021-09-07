@@ -30,12 +30,12 @@
                 <h5 id='trueh2'>📍 Search for a City:</h5>
                 <form class='form-inline'>
                     <div class='form-group'>
-                        <input id='searchforcityhere' class='form-input' type='text'
+                        <input id='searchThatCity' class='form-input' type='text'
                             placeholder='find the weather in...'>
                         <button class='btn btn-light' id='searchCityBtn' type='submit'><i
                                 class="fas fa-search"></i></button>
                         <!-- clear button -->
-                        <button id="clear" class="btn clearBtn" data-toggle="tooltip" title="clearpastsearches"><i
+                        <button id="clear" class="btn clearBtn" title="clearpastsearches"><i
                                 class='fas fa-times-circle'></i></button>
                 </form>
                 <!-- need to figure out how to display past searches here -->
@@ -48,7 +48,7 @@
 
         <!-- search result display -->
         <div class="col-md-9">
-            <div class='card' id='displayweathernow'>
+            <div class='card' id='currentWeather'>
                 <div class="card-body">
                     <div id='searchresultcitydate'>
                         <span id='citynamenow'>
@@ -65,7 +65,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-12" id='fivedayforecast'>
+                <div class="col-md-12" id='forecastWeather'>
                     <h4>5-Day Forecast:</h4>
                     <div id='fivedaycards'>
 

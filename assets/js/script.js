@@ -110,7 +110,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
 
             // now to build the 5 day card content!
             var forecastQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?&appid=" + APIKey + "&q=" + searchCity;
-            var forecastWeather = $('#fivedayforecast');
+            var forecastWeather = $('#forecastWeather');
             forecastWeather.addClass('pt-3');
 
             $.ajax({
@@ -159,30 +159,31 @@ $(document).ready(function () {
     }
     makeCitySearchBtns(searchListBtns)
 
+    $("#currentWeather").hide();
+    $("#forecastWeather").hide();
+
     // let's make the search button do it's thang
     $('#searchBtn').on('click', function (event) {
         event.preventDefault();
         //
-        var searchForCityHere = $('#searchforcityhere').val().trim();
+        var searchForCityHere = $('#searchThatCity').val().trim().toLowerCase();;
 
         // save search to local storage with setItem
         if (searchForCityHere != '') {
-            searchListBtns(searchForCityHere) = true;
+            searchListBtns[searchForCityHere] = true;
             localStorage.setItem('searchListBtns', JSON.stringify(searchListBtns));
 
-            generateSearchResults(searchListBtns, searchListBtns);
+            generateSearchResults(searchForCityHere, searchListBtns);
 
-            // display the current city selection
-            $('#displayweathernow').show();
-            // display the 5 day forecast cards
-            $('#fivedayforecast').show();
+            $('#currentWeather').show();
+            $('#forecastWeather').show();
         }
     })
 
-    // hide the current city selection when not showin them results
-    $('#displayweathernow').hide();
-    // hide the 5 day forecast cards as well
-    $('#fivedayforecast').hide();
+    
+
+    $('#currentWeather').hide();
+    $('#forecastWeather').hide();
 
 
     // lol I'll need to make a function to have the previously searched cities appear in the side panel but let's come back for that later heheh...
