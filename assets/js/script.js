@@ -27,7 +27,7 @@ function makeCitySearchBtns(searchListBtns) {
 };
 
 // TWOOOOOOOOOOOOOOOOOOO generate the search result - office hours
-function generateSearchResults(searchForCityHere, searchListBtns, getData) {
+function generateSearchResults(searchForCityHere, searchListBtns) {
     var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?&appid=" + APIKey + "&q=" + searchForCityHere;
 
@@ -36,7 +36,7 @@ function generateSearchResults(searchForCityHere, searchListBtns, getData) {
 
     // will build the buttons previously searched
     makeCitySearchBtns(searchListBtns);
-    
+
     // the response lang comes directly from openweathermap <3
 
     // fetch(queryURL)
@@ -50,8 +50,7 @@ function generateSearchResults(searchForCityHere, searchListBtns, getData) {
         error: function() {
             alert('Please enter a valid city name');
         }
-    }).then(function (repsonse) {
-        getData(response)
+    }).then(function (response) {
         console.log(response)
 
         var displayMomentHere = $('<h2>');
@@ -75,7 +74,7 @@ function generateSearchResults(searchForCityHere, searchListBtns, getData) {
         // the data will come as K, so will need to convert it to °F
         // var convertKtoF = (response.main.temp - `273.15) × 9/5 + 32`)
         // 
-        var tempNow = $('<p>').text('Temp: ' + convertKtoF + '°F');
+        var tempNow = $('<p>').text('Temp: ' + response.main.temp + '°F NOT YET LOLOL');
         //  display winds + humidity
         var windsNow = $('<p>').text('Wind Speed: ' + response.wind.speed + 'MPH');
         var humidityNow = $('<p>').text('Humidity: ' + response.main.humidity + '%');
@@ -88,7 +87,7 @@ function generateSearchResults(searchForCityHere, searchListBtns, getData) {
 
         // build UV index variables
         var latitude = response.coord.lat;
-        var longitude = repsonse.coord.lon;
+        var longitude = response.coord.lon;
 
         // pull UV index via openweathermap
         var uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + latitude + "&lon=" + longitude;
@@ -101,7 +100,7 @@ function generateSearchResults(searchForCityHere, searchListBtns, getData) {
             console.log(uvIndex);
             var uvNow = $('<span>');
 
-            // if/else statement + bootstrap to display UV conditions
+            // if/else statement + bootstrap to display UV conditions̀
             if (uvIndex.value < 2) {
                 // green is favorable, levels 1-2
                 uvNow.addClass('p-3 mb-2 bg-success text-white');
@@ -118,7 +117,7 @@ function generateSearchResults(searchForCityHere, searchListBtns, getData) {
             $('#uvnow').append(uvNow);
 
             // now to build the 5 day card content!
-            var forecastQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?&appid=" + APIKey + "&q=" + searchCity;
+            var forecastQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?&appid=" + APIKey + "&q=" + searchForCityHere;
             var forecastWeather = $('#forecast-weather');
             forecastWeather.addClass('pt-3');
 
@@ -147,7 +146,7 @@ function generateSearchResults(searchForCityHere, searchListBtns, getData) {
                     console.log(forecast.list[i].weather[0].icon);
 
                     // var convertKtoFAgain = (forecast.list[i].main.temp - `273.15) × 9/5 + 32`)
-                    $('#temp-' + forecastIndexID).text('Temp: ' + convertKtoFAgain + '°F');
+                    $('#temp-' + forecastIndexID).text('Temp: ' + forecast.list[i].main.temp + '°F NOT YET LOL');
                     $("#winds-" + forecastIndexID).text("Winds: " + forecast.list[i].wind.speed + " MPH");
                     $('#humidity-' + forecastIndexID).text('Humidity: ' + forecast.list[i].main.humidity + '%');
                 }
