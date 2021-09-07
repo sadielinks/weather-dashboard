@@ -166,6 +166,16 @@ $(document).ready(function () {
         searchListBtns = {};
     }
     makeCitySearchBtns(searchListBtns);
+    $("#city-list").on('click', 'button', function (event) {
+        event.preventDefault();
+        var searchForCityHere = $(this).text();
+    
+        generateSearchResults(searchForCityHere, searchListBtns);
+    
+        // Show these divs when a city list button is clicked
+        $("#current-weather").show();
+        $("#forecast-weather").show();
+      })
 
     $("#current-weather").hide();
     $("#forecast-weather").hide();
@@ -187,15 +197,4 @@ $(document).ready(function () {
             $('#forecast-weather').show();
         }
     })
-
-  $("#searchForCityHere").on("click", "button", function (event) {
-    event.preventDefault();
-    var searchForCityHere = $(this).text();
-
-    generateSearchResults(searchForCityHere, searchListBtns);
-
-    // Show these divs when a city list button is clicked
-    $("#current-weather").show();
-    $("#forecast-weather").show();
-  })
 });
