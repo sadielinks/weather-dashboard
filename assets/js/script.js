@@ -1,9 +1,12 @@
 // ONEEEEEEEEEEEEEEEEEE search panel + buttons
+var searchListBtns = JSON.parse(localStorage.getItem('searchListBtns'));
+
+
 function makeCitySearchBtns(searchListBtns) {
     // OH! adding this here now to stop the current values from adding on top of another, and rather replacing 
     $('#searchedcities').empty();
     $('#searchedcities').addClass('pt-3');
-
+console.log(searchListBtns)
     var searchDataReturn = Object.keys(searchListBtns);
     console.log(searchDataReturn)
     // let's make previous searches buttons in the side panel with loops + dynamically adding btns
@@ -66,7 +69,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
 
         // display temp + display winds + humidity
         var tempNow = $('<p>').text('Temp: ' + response.main.temp + '°F');
-        var windsNow = $('<p>').text('Wind Speed: ' + response.wind.speed + 'MPH');
+        var windsNow = $('<p>').text('Wind Speed: ' + response.wind.speed + ' MPH');
         var humidityNow = $('<p>').text('Humidity: ' + response.main.humidity + '%');
 
 
@@ -91,10 +94,10 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
             var uvNow = $('<span>');
 
             // if/else statement + bootstrap to display UV conditions̀
-            if (uvIndex.value < 2) {
+            if (uvIndex.value < 3) {
                 // green is favorable, levels 1-2
                 uvNow.addClass('p-3 mb-2 bg-success text-white');
-            } else if (uvIndex.value > 7) {
+            } else if (uvIndex.value < 7) {
                 // yellow being moderate, levels 3-7
                 uvNow.addClass('p-3 mb-2 bg-warning text-dark');
             } else {
@@ -155,6 +158,7 @@ $(document).ready(function () {
      if (searchListBtns === null) {
         searchListBtns = {};
     }
+    
     makeCitySearchBtns(searchListBtns);
     $("#city-list").on('click', 'button', function (event) {
         event.preventDefault();
@@ -173,7 +177,7 @@ $(document).ready(function () {
     // let's make the search button do it's thang
     $('#searchCityBtn').on('click', function (event) {
         event.preventDefault();
-        var searchForCityHere = $('#searchThatCity').val().trim().toLowerCase();;
+        var searchForCityHere = $('#searchThatCity').val().trim().toLowerCase();
 
         // save search to local storage with setItem
         if (searchForCityHere != '') {

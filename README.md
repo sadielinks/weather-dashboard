@@ -22,7 +22,7 @@ Users will be able to see their previously searched locations in the left sideba
 ```
 Main Display
 ```
-![Screenshot](./assets/images/PLACEHOLDER.png)
+![Screenshot](./assets/images/screenshot.png)
 
 ```
 
