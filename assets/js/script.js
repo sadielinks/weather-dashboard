@@ -5,7 +5,7 @@ function makeCitySearchBtns(searchListBtns) {
     $('#city-list').addClass('pt-3');
 
     var searchDataReturn = Object.keys(searchListBtns);
-    console.log(searchDataReturn)
+
     // let's make previous searches buttons in the side panel with loops + dynamically adding btns
     for (var i = 0; i < searchDataReturn.length; i++) {
         var CitySearchBtns = $('<button>');
@@ -13,11 +13,11 @@ function makeCitySearchBtns(searchListBtns) {
 
         // this is about to be the coolest thing I've learned yet
         // need to make a secondary loop so that the past searched city text appear on buttons, so I will use 'J' instead of another i, just like in math class heheh
-        var makeCityNameCaps = searchDataReturn[i].toLowerCase().split('');
+        var makeCityNameCaps = searchDataReturn[i].toLowerCase().split(' ');
         // bringin in that j for the next integer
         for (var j = 0; j < makeCityNameCaps.length; j++) {
             // charAt will help have the first letter turn capital only, since the index begins at 0 (first letter)
-            makeCityNameCaps[j] = makeCityNameCaps[j].charAt(0).toUpperCase + makeCityNameCaps[j].substring(1);
+            makeCityNameCaps[j] = makeCityNameCaps[j].charAt(0).toUpperCase() + makeCityNameCaps[j].substring(1);
         }
         // prepend to the DOM
         var priorSearches = makeCityNameCaps.join('');
