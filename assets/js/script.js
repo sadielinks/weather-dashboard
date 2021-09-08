@@ -38,12 +38,6 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
     makeCitySearchBtns(searchListBtns);
 
     // the response lang comes directly from openweathermap <3
-
-    // fetch(queryURL)
-    //     .then(function (response) {
-    //         return response.json();
-    //   })
-    
     $.ajax({
         url: queryURL,
         method: 'GET',
@@ -70,12 +64,8 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
          $('#iconsnow-').append(weatherIcon);
 
 
-        // display temp
-        // the data will come as K, so will need to convert it to °F
-        // var convertKtoF = (response.main.temp - `273.15) × 9/5 + 32`)
-        // 
+        // display temp + display winds + humidity
         var tempNow = $('<p>').text('Temp: ' + response.main.temp + '°F');
-        //  display winds + humidity
         var windsNow = $('<p>').text('Wind Speed: ' + response.wind.speed + 'MPH');
         var humidityNow = $('<p>').text('Humidity: ' + response.main.humidity + '%');
 
@@ -183,7 +173,6 @@ $(document).ready(function () {
     // let's make the search button do it's thang
     $('#searchCityBtn').on('click', function (event) {
         event.preventDefault();
-        //
         var searchForCityHere = $('#searchThatCity').val().trim().toLowerCase();;
 
         // save search to local storage with setItem
