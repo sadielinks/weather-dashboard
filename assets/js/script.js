@@ -1,4 +1,4 @@
-// ONEEEEEEEEEEEEEEEEEE search panel + buttons
+// load document once search starts
 function makeCitySearchBtns(searchListBtns) {
     // OH! adding this here now to stop the current values from adding on top of another, and rather replacing 
     $('#city-list').empty();
@@ -6,15 +6,13 @@ function makeCitySearchBtns(searchListBtns) {
 
     var searchDataReturn = Object.keys(searchListBtns);
 
-    // let's make previous searches buttons in the side panel with loops + dynamically adding btns
+    // previous searches appear as buttons in the side panel
     for (var i = 0; i < searchDataReturn.length; i++) {
         var CitySearchBtns = $('<button>');
         CitySearchBtns.addClass('list-group-item list-group-item-action')
 
-        // this is about to be the coolest thing I've learned yet
-        // need to make a secondary loop so that the past searched city text appear on buttons, so I will use 'J' instead of another i, just like in math class heheh
+        // creating 2 loops for displaying caps and lowercase in city names + dynamically adding them as btns
         var makeCityNameCaps = searchDataReturn[i].toLowerCase().split(' ');
-        // bringin in that j for the next integer
         for (var j = 0; j < makeCityNameCaps.length; j++) {
             // charAt will help have the first letter turn capital only, since the index begins at 0 (first letter)
             makeCityNameCaps[j] = makeCityNameCaps[j].charAt(0).toUpperCase() + makeCityNameCaps[j].substring(1);
@@ -26,18 +24,17 @@ function makeCitySearchBtns(searchListBtns) {
     }
 };
 
-// TWOOOOOOOOOOOOOOOOOOO generate the search result - office hours
+// generate the search result
 function generateSearchResults(searchForCityHere, searchListBtns) {
     var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?&appid=" + APIKey + "&q=" + searchForCityHere + "&units=imperial";
 
     // empty currently displayed content
-    $('#tempnow, #windsnow, #humiditynow, #uvnow').empty();
+    $('#tempsnow, #windsnow, #humiditynow, #uvnow').empty();
 
-    // will build the buttons previously searched
     makeCitySearchBtns(searchListBtns);
 
-    // the response lang comes directly from openweathermap <3
+    // ajax to obtain data and then we will use the data we want, and display it as we want
     $.ajax({
         url: queryURL,
         method: 'GET',
@@ -135,7 +132,6 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                     $('#icon-' + forecastIndexID).append(forecastIcon);
                     console.log(forecast.list[i].weather[0].icon);
 
-                    // var convertKtoFAgain = (forecast.list[i].main.temp - `273.15) × 9/5 + 32`)
                     $('#temp-' + forecastIndexID).text('Temp: ' + forecast.list[i].main.temp + '°F');
                     $("#winds-" + forecastIndexID).text("Winds: " + forecast.list[i].wind.speed + " MPH");
                     $('#humidity-' + forecastIndexID).text('Humidity: ' + forecast.list[i].main.humidity + '%');
@@ -147,11 +143,12 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
     )
 };
 
-// THREEEEEEEEEEEEEEEEEE format the doc to layout 
+// format the doc to layout 
 $(document).ready(function () {
+    // will pull what was searched back to the button list
     var searchListBtns = JSON.parse(localStorage.getItem('searchListBtns'));
 
-     // if statment so user cannot submit an 'empty' search, thx stackoverflow
+     // if statment so user cannot submit an 'empty' search
      if (searchListBtns === null) {
         searchListBtns = {};
     }
@@ -167,7 +164,7 @@ $(document).ready(function () {
         $("#current-weather").show();
         $("#forecast-weather").show();
       })
-
+      // hide otherwise
     $("#current-weather").hide();
     $("#forecast-weather").hide();
 
@@ -188,3 +185,4 @@ $(document).ready(function () {
         }
     })
 });
+// thanks for reading thru my code! 

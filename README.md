@@ -25,9 +25,9 @@ Main Display
 ![Screenshot](./assets/images/screenshot.png)
 
 ```
-
+Previously Searched Display
 ```
-![Screenshot](./assets/images/PLACEHOLDER.png)
+![Screenshot](./assets/images/screenshot2.png)
 
 
 ## Links
