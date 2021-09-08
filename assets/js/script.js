@@ -1,12 +1,9 @@
 // ONEEEEEEEEEEEEEEEEEE search panel + buttons
-var searchListBtns = JSON.parse(localStorage.getItem('searchListBtns'));
-
-
 function makeCitySearchBtns(searchListBtns) {
     // OH! adding this here now to stop the current values from adding on top of another, and rather replacing 
-    $('#searchedcities').empty();
-    $('#searchedcities').addClass('pt-3');
-console.log(searchListBtns)
+    $('#city-list').empty();
+    $('#city-list').addClass('pt-3');
+
     var searchDataReturn = Object.keys(searchListBtns);
     console.log(searchDataReturn)
     // let's make previous searches buttons in the side panel with loops + dynamically adding btns
@@ -25,7 +22,7 @@ console.log(searchListBtns)
         // prepend to the DOM
         var priorSearches = makeCityNameCaps.join('');
         CitySearchBtns.text(priorSearches);
-        $('#searchedcities').prepend(CitySearchBtns);
+        $('#city-list').prepend(CitySearchBtns);
     }
 };
 
@@ -160,7 +157,7 @@ $(document).ready(function () {
     }
     
     makeCitySearchBtns(searchListBtns);
-    $("#city-list").on('click', 'button', function (event) {
+    $("#searchThatCity").on('click', 'button', function (event) {
         event.preventDefault();
         var searchForCityHere = $(this).text();
     

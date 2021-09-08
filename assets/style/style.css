@@ -24,13 +24,11 @@ header {
   padding: 10px 0;
 }
 
-.container-fluid .row div h5 {
+.container-fluid .row div h4 {
   font-weight: bold;
 }
 
-#city-date-icon,
-#city-name,
-#current-icon, #forecast-cards
+#city-date-icon, #city-name, #forecast-cards
 {
   display: flex;
 }
@@ -41,21 +39,12 @@ header {
 
 #forecast-weather {
   width: 100%;
+  
 }
 
 .forecast {
   margin: 20px;
 }
-
-
-
-
-
-
-
-
-
-
 
 footer {
     text-align: center;
