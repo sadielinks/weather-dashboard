@@ -29,7 +29,7 @@ function makeCitySearchBtns(searchListBtns) {
 // TWOOOOOOOOOOOOOOOOOOO generate the search result - office hours
 function generateSearchResults(searchForCityHere, searchListBtns) {
     var APIKey = 'f18e1d06a58117a9f630af5002d9adef'
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?&appid=" + APIKey + "&q=" + searchForCityHere;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?&appid=" + APIKey + "&q=" + searchForCityHere + "&units=imperial";
 
     // empty currently displayed content
     $('#tempnow, #windsnow, #humiditynow, #uvnow').empty();
@@ -74,7 +74,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         // the data will come as K, so will need to convert it to °F
         // var convertKtoF = (response.main.temp - `273.15) × 9/5 + 32`)
         // 
-        var tempNow = $('<p>').text('Temp: ' + response.main.temp + '°F NOT YET LOLOL');
+        var tempNow = $('<p>').text('Temp: ' + response.main.temp + '°F');
         //  display winds + humidity
         var windsNow = $('<p>').text('Wind Speed: ' + response.wind.speed + 'MPH');
         var humidityNow = $('<p>').text('Humidity: ' + response.main.humidity + '%');
@@ -93,7 +93,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
         var uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + latitude + "&lon=" + longitude;
 
         // display UV index using ajax
-        $.ajax({
+       $.ajax({
             url: uvQueryURL,
             method: 'GET'
         }).then(function (uvIndex) {
@@ -117,7 +117,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
             $('#uvnow').append(uvNow);
 
             // now to build the 5 day card content!
-            var forecastQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?&appid=" + APIKey + "&q=" + searchForCityHere;
+            var forecastQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?&appid=" + APIKey + "&q=" + searchForCityHere + "&units=imperial";
             var forecastWeather = $('#forecast-weather');
             forecastWeather.addClass('pt-3');
 
@@ -146,7 +146,7 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                     console.log(forecast.list[i].weather[0].icon);
 
                     // var convertKtoFAgain = (forecast.list[i].main.temp - `273.15) × 9/5 + 32`)
-                    $('#temp-' + forecastIndexID).text('Temp: ' + forecast.list[i].main.temp + '°F NOT YET LOL');
+                    $('#temp-' + forecastIndexID).text('Temp: ' + forecast.list[i].main.temp + '°F');
                     $("#winds-" + forecastIndexID).text("Winds: " + forecast.list[i].wind.speed + " MPH");
                     $('#humidity-' + forecastIndexID).text('Humidity: ' + forecast.list[i].main.humidity + '%');
                 }
