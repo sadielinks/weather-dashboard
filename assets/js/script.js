@@ -42,7 +42,6 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
             alert('Please enter a valid city name');
         }
     }).then(function (response) {
-        console.log(response)
 
         var displayMomentHere = $('<h2>');
         var currentMoment = moment();
@@ -84,7 +83,6 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
             url: uvQueryURL,
             method: 'GET'
         }).then(function (uvIndex) {
-            console.log(uvIndex);
             var uvNow = $('<span>');
 
             // if/else statement + bootstrap to display UV conditions̀
@@ -112,7 +110,6 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                 url: forecastQueryUrl,
                 method: 'GET'
             }).then(function (forecast) {
-                console.log(forecast);
 
                 // per openweathermap, things are updated every 3 hrs, 24 hrs from current, so set loop to continue the data pull 8 hours 
                 for (var i = 7; i < forecast.list.length; i += 8) {
@@ -122,7 +119,6 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                     // using index for days 1-5
                     var forecastIndexID = (i + 1) / 8;
                     var forecastDayAdd = currentMoment.add(1, 'days').format('l');
-                    console.log('#forecastdate-' + forecastIndexID, i, forecastDayAdd);
                     $('#forecastdate-' + forecastIndexID).empty();
                     $('#forecastdate-' + forecastIndexID).append(forecastDateDisplay.text(forecastDayAdd));
 
@@ -130,7 +126,6 @@ function generateSearchResults(searchForCityHere, searchListBtns) {
                     forecastIcon.attr('src', "https://openweathermap.org/img/w/" + forecast.list[i].weather[0].icon + '.png');
                     $('#icon-' + forecastIndexID).empty();
                     $('#icon-' + forecastIndexID).append(forecastIcon);
-                    console.log(forecast.list[i].weather[0].icon);
 
                     $('#temp-' + forecastIndexID).text('Temp: ' + forecast.list[i].main.temp + '°F');
                     $("#winds-" + forecastIndexID).text("Winds: " + forecast.list[i].wind.speed + " MPH");
