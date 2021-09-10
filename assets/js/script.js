@@ -12,13 +12,13 @@ function makeCitySearchBtns(searchListBtns) {
         CitySearchBtns.addClass('list-group-item list-group-item-action')
 
         // creating 2 loops for displaying caps and lowercase in city names + dynamically adding them as btns
-        var makeCityNameCaps = searchDataReturn[i].toLowerCase().split(' ');
+        var makeCityNameCaps = searchDataReturn[i].toLowerCase().split(" ");
         for (var j = 0; j < makeCityNameCaps.length; j++) {
             // charAt will help have the first letter turn capital only, since the index begins at 0 (first letter)
             makeCityNameCaps[j] = makeCityNameCaps[j].charAt(0).toUpperCase() + makeCityNameCaps[j].substring(1);
         }
         // prepend to the DOM
-        var priorSearches = makeCityNameCaps.join('');
+        var priorSearches = makeCityNameCaps.join(' ');
         CitySearchBtns.text(priorSearches);
         $('#city-list').prepend(CitySearchBtns);
     }
@@ -149,7 +149,7 @@ $(document).ready(function () {
     }
     
     makeCitySearchBtns(searchListBtns);
-    $("#searchThatCity").on('click', 'button', function (event) {
+    $("#city-list").on('click', 'button', function (event) {
         event.preventDefault();
         var searchForCityHere = $(this).text();
     
