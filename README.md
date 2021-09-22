@@ -36,3 +36,18 @@ Previously Searched Display
 
 
 [GitHub Repository](https://github.com/sadielinks/weather-dashboard)
+
+## Technologies Used
+- HTML, CSS, Javascript, JQuery, Moment.JS, Bootstrap, JSON, and Open Weather Map ® API.
+
+
+## Contact Information
+
+- [GitHub Profile](https://github.com/sadielinks)
+- [Portfolio](https://sadielinks.github.io/professional-portfolio/)
+- [Email](mailto:sadiecodes@gmail.com)
+
+
+## License
+
+© 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
